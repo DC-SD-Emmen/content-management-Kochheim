@@ -7,8 +7,19 @@
 </head>
 <body>
 
+<?php
 
-    <a href="opdracht%201/index.php"><h1>Opdracht 1</h1></a>
+    //autloader classes
+    spl_autoload_register(function ($class_name) {
+        include './Classes/' . $class_name . '.php';
+    });
+
+
+    
+
+
+
+?>
     
 </body>
 </html>
