@@ -7,17 +7,26 @@
 </head>
 <body>
 
-<?php
+<a>test</a>
 
+<form action="index.php" method="post">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+    <input type="submit" value="Submit">
+    
+</form>
+
+
+
+<?php
     //autloader classes
     spl_autoload_register(function ($class_name) {
         include './Classes/' . $class_name . '.php';
     });
 
-
-    
-
-
+    $user = new User();
 
 ?>
     

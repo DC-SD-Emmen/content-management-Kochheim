@@ -5,7 +5,7 @@ class DBconnect {
     private $servername = "mysql";
     private $username = "root";
     private $password = "root";
-    private $privatedb = "oefenopdracht 1";
+    private $privatedb = "database";
 
     public function __construct() {
         try {
@@ -18,4 +18,8 @@ class DBconnect {
         }
 
     }
-?>
+
+
+    public function getConn() {
+        return $this->conn;
+    }
