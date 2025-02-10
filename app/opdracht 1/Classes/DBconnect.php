@@ -17,9 +17,9 @@ class DBconnect {
             }
         }
 
-    }
 
 
     public function getConn() {
         return $this->conn;
     }
+}
