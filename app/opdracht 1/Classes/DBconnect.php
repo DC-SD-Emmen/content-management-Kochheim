@@ -16,9 +16,7 @@ class DBconnect {
             echo "Connection failed: " . $e->getMessage();
             }
         }
-
-
-
+        
     public function getConn() {
         return $this->conn;
     }
