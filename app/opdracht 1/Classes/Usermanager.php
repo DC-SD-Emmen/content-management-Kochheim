@@ -7,7 +7,7 @@ class database{
     $this->conn = $db->getConn();
     }
 
-function User($username, $password)
+function Register($username, $password)
 {
     try {
         $stmt = $this->conn->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
@@ -20,4 +20,23 @@ function User($username, $password)
     }
 }
 
+function Login($username, $password)
+{
+    try {
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE username = :username");
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (password_verify($password, $result['password'])) {
+            echo 'Login successful';
+        } else {
+            echo 'Login failed';
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
 }
+
+
+}
+
