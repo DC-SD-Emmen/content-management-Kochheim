@@ -14,22 +14,19 @@
 <form action="Classes/formhander.php" method="post" >
     <label id="signup" for="username">Username</label>
     <input type="text" name="username" id="username">
-
     <label id="signup" for="password">Password</label>
     <input id="signup"type="password" name="password" id="password">
-
     <input type="submit" value="Register" name="register">
 </form>
 </div>
 
+<h1 id="logintitle">Login</h1>
 <div class="logincontainer">
 <form action="Classes/formhander.php" method="post">
-    <label id="login"for="Lusername">Username</label>
-    <input id="l"type="text"  name="Lusername" required>
-
-    <label id="login"for="Lpassword">Password</label>
-    <input id="login"type="password" name="Lpassword" required>
-
+    <label id="login"for="logusername">Username</label>
+    <input id="login"type="text"  name="logusername" required>
+    <label id="login"for="logpassword">Password</label>
+    <input id="login"type="password" name="logpassword" required>
     <input type="submit" value="Login" name="Login">
 </form>
     
@@ -39,13 +36,8 @@
     spl_autoload_register(function ($class_name) {
         include './Classes/' . $class_name . '.php';
     });
-
     // $user = new User();
-    
-
 ?>
 
-
- 
 </body>
 </html>

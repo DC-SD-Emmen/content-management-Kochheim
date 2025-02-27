@@ -28,15 +28,13 @@ function Login($username, $password)
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if (password_verify($password, $result['password'])) {
-            echo 'Login successful';
+            $_SESSION['user'] = $username;
+            $_SESSION['userId'] = $result['id'];
+            header('Location: http://localhost/opdracht%201/Welkom.php/login.php');
         } else {
-            echo 'Login failed';
         }
     } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
     }
 }
-
-
 }
 
