@@ -1,11 +1,12 @@
 <?php
 
-class DBconnect {
+class Database {
 
     private $servername = "mysql";
     private $username = "root";
     private $password = "root";
     private $privatedb = "database";
+    private $conn;
 
     public function __construct() {
         try {
@@ -14,7 +15,8 @@ class DBconnect {
             } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
             }
-        } 
+        }
+         
     public function getConn() {
         return $this->conn;
     }
