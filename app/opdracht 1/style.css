@@ -45,3 +45,17 @@ h1 {
     margin-right: 10px;
     margin-left: 10px;
 }
+
+.gameform {
+    display: flex;
+    margin-top: 20px;
+    width: 800px;
+    justify-content: center;
+    margin: 0 auto;
+    height: 450px;
+    font-size: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}

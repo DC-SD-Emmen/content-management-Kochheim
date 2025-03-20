@@ -13,18 +13,24 @@
 
 
         if(isset($_POST['register'])){
-
-            $username = htmlspecialchars($_POST['username']);
+            $username = null;
+            $username = trim($_POST['username']);
+            $username = stripslashes($username);
+            $username = htmlspecialchars($username);
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $userManager->register($username, $hashedPw);
         }
-
+ 
         if(isset($_POST['login'])){
+            $username = null;
+            $username = trim($_POST['logusername']);
+            $username = stripslashes($username);
+            $username = htmlspecialchars($username);
 
-            $username = htmlspecialchars($_POST['logusername']);
             $password = $_POST['logpassword'];
             $userManager->login($username, $password);
         }
+
     }
 
 ?>
@@ -62,6 +68,29 @@
     </form>
 </div>
 
+<div class="gameform">
+    <form method="post" action='./Formhandler.php' enctype="multipart/form-data"> 
+            name:<br>
+            <input type="text" name="titleInput" value='testTitle' required> <br>
+            genre: <br>
+            <input type="text" name="genreInput" value='testGenre' required> <br> 
+            platform: <br>
+            <input type="text" name="platformInput" value='testPlatform' required> <br> 
+            release year: <br>
+            <input type="date" name="releaseyearInput" required> <br> 
+            rating:  <br>
+            <input type="range" id="rating" name="rating" min="1.0" max="10.0" step="0.1" required 
+             oninput="this.nextElementSibling.value = parseFloat(this.value).toFixed(1)"> 
+            <output for="rating">5.0</output><br> 
+            Description: <br>       
+            <textarea name="description" value='testDescription' rows="5"></textarea> <br>
+            image: <br>
+            <input type="file" name="gameImage" id="image" required>
+            <input type="submit" id="submitButton" value="Submit" name="addGame"> <br>
+        </form>
+    </div>
 
+    
+ 
 </body>
 </html>

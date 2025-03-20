@@ -32,17 +32,12 @@ class UserManager {
                 $_SESSION['user'] = $username;
                 $_SESSION['userId'] = $result['id'];
 
-                $timeout = 5;
-
-                $_SESSION['start'] = time();
-                
-                
-                $_SESSION['expire'] = $_SESSION['start'] + $timeout;
-
-                header('Location: http://localhost/opdracht%201/Welkom.php/login.php');
+                header ('Location: Welkom.php');
             } else {
+                echo 'Invalid username or password';
             }
         } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
 }
