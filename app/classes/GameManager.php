@@ -4,12 +4,12 @@ class Gamemanager {
 
   private $conn;
 
-  public function __construct(Database $db) {
-      $this->conn = $db->getConn();
+  public function __construct(database $db) {
+      $this->conn = $db->getConnection();
   }
 
   public function insertdata($title, $genre, $platform, $releaseyear, $rating, $description, $afbeelding) {
-      // Controleer of de POST-waarden bestaan en voeg anders een lege string toe
+      // Controleer of de POST-warden bestaan en voeg anders een lege string toe
 
       try {
           $stmt = $this->conn->prepare("INSERT INTO games (title, genre, platform, releaseyear, rating, description, image) 
@@ -26,8 +26,7 @@ class Gamemanager {
       } catch(PDOException $e) {
           echo 'Error: ' . $e->getMessage();
       }
-  }
-
+}
 public function fetch_all_games() {
     $stmt = $this->conn->prepare("SELECT * FROM games");
     $stmt->execute();
@@ -66,6 +65,18 @@ function get_game_details($id) {
         } else {
             return null;
         }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+}
+
+public function add_to_user_games($game_id) {
+    session_start();
+    try {
+        $stmt = $this->conn->prepare("INSERT INTO user_games (user_id, game_id) VALUES (:user_id, :game_id)");
+        $stmt->bindParam(':user_id', $_SESSION['userId']);
+        $stmt->bindParam(':game_id', $game_id);
+        $stmt->execute();
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
