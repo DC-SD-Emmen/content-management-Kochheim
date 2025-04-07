@@ -1,47 +1,46 @@
 <?php
-spl_autoload_register(function ($className) {
-    require_once 'classes/' . $className . '.php';
-});
+    spl_autoload_register(function ($className) {
+        require_once 'classes/' . $className . '.php';
+    });
 
-// Start the session if not already started
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+    // Start the session if not already started
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
-// Establish database connection
-$conn = (new Database())->getConnection();
-$userManager = new UserManager($conn);
+    // Establish database connection
+    $conn = (new Database())->getConnection();
+    $userManager = new UserManager($conn);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $newusername = $_POST['username'];
-    $newemail = $_POST['email'];
-    $newpassword = $_POST['password'];
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $newusername = $_POST['username'];
+        $newemail = $_POST['email'];
+        $newpassword = $_POST['password'];
 
-    if (empty($newusername) || empty($newpassword) || empty($newemail)) {
-        echo "Please fill in all fields!";
-    } else {
-        // Check if the username already exists
-        $hashedPassword = password_hash($newpassword, PASSWORD_DEFAULT);
+        if (empty($newusername) || empty($newpassword) || empty($newemail)) {
+            echo "Please fill in all fields!";
+        } else {
+            // Check if the username already exists
+            $hashedPassword = password_hash($newpassword, PASSWORD_DEFAULT);
 
-        // hashed de password
-        if (isset($_SESSION['userId'])) {
-            $userId = $_SESSION['userId'];
+            // hashed de password
+            if (isset($_SESSION['userId'])) {
+                $userId = $_SESSION['userId'];
+                // past de username en wachtwoord aan van de user momenteen in de session
+                if ($userManager->updateUser($userId, $newusername, $newemail, $hashedPassword)) {
+                    echo "User updated successfully!";
 
-            // past de username en wachtwoord aan van de user momenteen in de session
-
-
-            if ($userManager->updateUser($userId, $newusername, $newemail, $hashedPassword)) {
-                echo "User updated successfully!";
+                } else {
+                    echo "Failed to update user.";
+                }
 
             } else {
-                echo "Failed to update user.";
+                echo "User ID not found in session.";
             }
-        } else {
-            echo "User ID not found in session.";
         }
     }
-}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

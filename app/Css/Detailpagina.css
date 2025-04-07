@@ -13,21 +13,16 @@ h1 {
 }
 
 img {
-    
-    
    justify-content: center;
-   width:20%;
-    
+    width:20%; 
 }
 
 p {
-    
     margin: auto;
 }
 
 #close {
     margin:auto;
     color: white;
-    
 }
 
