@@ -3,12 +3,12 @@
         require_once 'classes/' . $className . '.php';
     });
 
-    // Start the session if not already started
+    //! Start the session if not already started
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
 
-    // Establish database connection
+    //! Establish database connection
     $conn = (new Database())->getConnection();
     $userManager = new UserManager($conn);
 
@@ -20,13 +20,13 @@
         if (empty($newusername) || empty($newpassword) || empty($newemail)) {
             echo "Please fill in all fields!";
         } else {
-            // Check if the username already exists
+            //! Check if the username already exists
             $hashedPassword = password_hash($newpassword, PASSWORD_DEFAULT);
 
-            // hashed de password
+            //! hashed de password
             if (isset($_SESSION['userId'])) {
                 $userId = $_SESSION['userId'];
-                // past de username en wachtwoord aan van de user momenteen in de session
+                //! past de username en wachtwoord aan van de user momenteen in de session
                 if ($userManager->updateUser($userId, $newusername, $newemail, $hashedPassword)) {
                     echo "User updated successfully!";
 

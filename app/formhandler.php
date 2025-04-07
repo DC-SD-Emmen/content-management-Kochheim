@@ -23,8 +23,8 @@
             $releaseyear = htmlspecialchars($_POST["releaseyearInput"]);
             $rating = $_POST["rating"];
             $description = htmlspecialchars($_POST['description']);
-            // $afbeelding = 'uploads/no-image.jpg';
-            // Set a default image path if no file is uploaded
+            //! $afbeelding = 'uploads/no-image.jpg';
+            //! Set a default image path if no file is uploaded
 
             if (!empty($_FILES["fileToUpload"]["tmp_name"])) {
                 $target_dir = "uploads/";
@@ -39,7 +39,7 @@
                 }
 
                 if (file_exists($target_file)) {
-                // echo 'Sorry, file already exists. Please rename it or choose another image.';
+                //! echo 'Sorry, file already exists. Please rename it or choose another image.';
                 return;
                 }
 
@@ -54,7 +54,7 @@
                 }
 
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                    //echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
+                    //! echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
                     $afbeelding = $target_file; 
                 } else {
                     echo "Sorry, there was an error uploading your file.";

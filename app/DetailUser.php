@@ -34,6 +34,7 @@
         <input type="hidden" name="game_id" value="<?php echo $id; ?>">
         <input type="submit" name="add_to_wishlist" value="Add to wishlist">
     </form>
+    
     <a id="close" href="Libraryuser.php">sluit
 </body>
 </html>

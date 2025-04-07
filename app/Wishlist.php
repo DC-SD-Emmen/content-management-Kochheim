@@ -21,5 +21,13 @@
 </head>
 <body>
     <p> Goeiemiddag <?php echo $_SESSION['user']; ?> Dit zijn jou opgeslagen games. </p>
+    <?php foreach ($user_game as $game_id): ?>
+        <div class="gameSidebarItem">
+            <a href="Detailpagina.php?id=<?php echo $game->getID(); ?>">        
+                <img src=" <?php echo htmlspecialchars($game->get_image()); ?>"  class="sidebarGameImage">
+                <span class="gameTitle"><?php echo htmlspecialchars($game->get_title()); ?></span> <br>
+            </a>
+        </div>
+    <?php endforeach; ?>
 </body>
 </html>

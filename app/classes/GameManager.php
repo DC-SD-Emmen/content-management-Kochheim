@@ -8,7 +8,7 @@
         }
 
         public function insertdata($title, $genre, $platform, $releaseyear, $rating, $description, $afbeelding) {
-            // Controleer of de POST-warden bestaan en voeg anders een lege string toe
+            //! Controleer of de POST-warden bestaan en voeg anders een lege string toe
             try {
                 $stmt = $this->conn->prepare("INSERT INTO games (title, genre, platform, releaseyear, rating, description, image) 
                 VALUES (:title, :genre, :platform, :releaseyear, :rating, :description,:image)");
@@ -25,11 +25,13 @@
                 echo 'Error: ' . $e->getMessage();
             }
         }
+        
         public function fetch_all_games() {
             $stmt = $this->conn->prepare("SELECT * FROM games");
             $stmt->execute();
 
             $games = [];
+            //! FETCH_assoc betekend dat de data in een associative array komt
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $game = new Game();
                 $game->setID($row['id']);

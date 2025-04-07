@@ -1,15 +1,15 @@
 <?php
-    //spl autoloader /classes
+    //! spl autoloader /classes
     spl_autoload_register(function ($className) {
         require_once 'classes/' . $className . '.php';
     });
 
-    //session start
+    //! session start
     session_start();
 
-    //make new database 
+    //! make new database 
     $db = new Database();
-    //make new usermanager
+    //! make new usermanager
     $um = new UserManager($db->getConnection());
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -53,7 +53,7 @@
     </div>
 
     <h1 id="logintitle">Login</h1>
-    
+
     <div class="logincontainer">
         <form method="post">
             <label id="login"for="logusername">Username</label>
