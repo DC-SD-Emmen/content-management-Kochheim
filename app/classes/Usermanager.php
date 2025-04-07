@@ -24,12 +24,13 @@
                 $stmt->bindParam(':username', $username);
                 $stmt->execute();
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                
                 if (password_verify($password, $result['password'])) {
-                $_SESSION['user'] = $username;
-                $_SESSION['userId'] = $result['id'];
-                header('Location:Libraryuser.php');
+                    $_SESSION['user'] = $username;
+                    $_SESSION['userId'] = $result['id'];
+                    header('Location:Libraryuser.php');
                 } else {
-                echo 'Invalid username or password';
+                    echo 'Invalid username or password';
                 }
             } catch (PDOException $e) {
                 echo "Error: " . $e->getMessage();
