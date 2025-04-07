@@ -8,7 +8,7 @@
             session_start();
         }
     }
-
+    //! test
     $db = new Database();
     $gm = new Gamemanager($db);
 
