@@ -42,10 +42,7 @@
         if (isset($_SESSION['userId'])) {
             $userId = $_SESSION['userId'];
             if ($userManager->deleteUser($userId)) {
-                echo "User deleted successfully!";
-                session_destroy();
                 header('Location: index.php');
-                exit();
             } else {
                 echo "Failed to delete user.";
             }
