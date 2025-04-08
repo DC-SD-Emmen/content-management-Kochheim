@@ -12,7 +12,7 @@
     $conn = (new Database())->getConnection();
     $userManager = new UserManager($conn);
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
         $newusername = $_POST['username'];
         $newemail = $_POST['email'];
         $newpassword = $_POST['password'];
@@ -29,17 +29,32 @@
                 //! past de username en wachtwoord aan van de user momenteen in de session
                 if ($userManager->updateUser($userId, $newusername, $newemail, $hashedPassword)) {
                     echo "User updated successfully!";
-
                 } else {
                     echo "Failed to update user.";
                 }
-
             } else {
                 echo "User ID not found in session.";
             }
         }
     }
+
+    if (isset($_POST['action']) && $_POST['action'] === 'delete') {
+        if (isset($_SESSION['userId'])) {
+            $userId = $_SESSION['userId'];
+            if ($userManager->deleteUser($userId)) {
+                echo "User deleted successfully!";
+                session_destroy();
+                header('Location: index.php');
+                exit();
+            } else {
+                echo "Failed to delete user.";
+            }
+        } else {
+            echo "User ID not found in session.";
+        }
+    }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,6 +76,11 @@
         <input type="password" id="newpassword" name="password" required>
         <br><br>
         <button type="submit">Update</button>
+    </form>
+    <h2>Delete Your Account</h2>
+    <form method="POST">
+        <input type="hidden" name="action" value="delete">
+        <button type="submit" name="delete">Delete Account</button>
     </form>
 </body>
 </html>

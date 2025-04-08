@@ -18,8 +18,7 @@ $games = $gm ->fetch_all_games();
     <title>Gamemanager</title>
 </head>
 
-<body>?>
-
+<body>
     <div id="title">
         <p>Gamelibrary</p>
         <a id="add-button" href="Addgame.php">Add Game</a>

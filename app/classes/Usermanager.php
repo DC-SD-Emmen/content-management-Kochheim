@@ -51,5 +51,17 @@
                 return false;
             }
         }
+
+        public function deleteUser($id) {
+            try {
+                $stmt = $this->conn->prepare("DELETE FROM users WHERE id = :id");
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
+                return true;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
     }
 ?>
