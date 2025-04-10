@@ -24,7 +24,7 @@
         if(isset($_POST['login'])) {
             $username = $_POST['logusername'];
             $password = $_POST['logpassword'];
-            //login the user
+            //!login die user
             $um->login($username, $password);
         }
     }

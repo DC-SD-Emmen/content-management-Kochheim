@@ -1,5 +1,4 @@
 <?php
-
     class Gamemanager {
         private $conn;
 

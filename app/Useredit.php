@@ -8,7 +8,7 @@
         session_start();
     }
 
-    //! Establish database connection
+    //! connect database
     $conn = (new Database())->getConnection();
     $userManager = new UserManager($conn);
 
@@ -23,7 +23,7 @@
             //! Check if the username already exists
             $hashedPassword = password_hash($newpassword, PASSWORD_DEFAULT);
 
-            //! hashed de password
+            //! hashed de hachtwoord
             if (isset($_SESSION['userId'])) {
                 $userId = $_SESSION['userId'];
                 //! past de username en wachtwoord aan van de user momenteen in de session
@@ -43,6 +43,7 @@
             $userId = $_SESSION['userId'];
             if ($userManager->deleteUser($userId)) {
                 header('Location: index.php');
+                //! WAAROM GEEN ECHO BIJ HEADERSSSS
             } else {
                 echo "Failed to delete user.";
             }
