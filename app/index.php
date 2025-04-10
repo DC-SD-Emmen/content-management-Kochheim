@@ -17,7 +17,6 @@ $games = $gm ->fetch_all_games();
     <link rel="stylesheet" type="text/css" href="Css/index.css">
     <title>Gamemanager</title>
 </head>
-
 <body>
     <div id="title">
         <p>Gamelibrary</p>

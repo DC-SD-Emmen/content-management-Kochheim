@@ -1,32 +1,40 @@
-<?php
-    session_start();
-    spl_autoload_register(function ($className) {
-        require_once 'classes/' . $className . '.php';
-    });
-    include_once 'formhandler.php';
-
-    if (!isset($_SESSION['user'])) {
-        header('Location:Loginpage.php');
-    }
-
-    $db = new Database();
-    $gm = new Gamemanager($db);
-    $user_id = $_SESSION['user'];
-    $games = $gm->fetch_user_games($user_id);
-    $game_id = $_GET['id'] ?? null;
-    $game = $gm->fetch_game_by_id($game_id);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="Css/Detailpagina.css">
+    <title>`wishgame</title>
 </head>
 <body>
-    <h1>Wishlist</h1>
+    <?php
+        $id = isset($_GET['id']) ? $_GET['id'] : 0;
 
-    
+        spl_autoload_register(function ($className) {
+            require_once 'classes/' . $className . '.php';
+        });
+
+        $db = new Database();
+        $gamesOphalen = new Gamemanager($db);
+        $gameDetails = $gamesOphalen->get_game_details($id);
+        if ($gameDetails) {
+            echo "<h1>{$gameDetails['title']}</h1>";
+            echo "<img src='{$gameDetails['image']}' alt='{$gameDetails['title']}'>";
+            echo "<p><strong>Genre:</strong> {$gameDetails['genre']}</p>";
+            echo "<p><strong>Platform:</strong> {$gameDetails['platform']}</p>";
+            echo "<p><strong>Release Year:</strong> {$gameDetails['releaseyear']}</p>";
+            echo "<p><strong>Rating:</strong> {$gameDetails['rating']}</p>";
+            echo "<p><strong>Description:</strong> {$gameDetails['description']}</p>";
+        } else {
+            echo "<h2>Game not found.</h2>";
+        }
+    ?>
+4
+    <form action="classes/UserGamemanager.php" method="post">
+        <input type="hidden" name="game_id" value="Remove">
+        <input type="submit" name="Remove" value="Delete from wishlist">
+    </form>
+
+    <a id="close" href="Wishlist.php">sluit
 </body>
 </html>
