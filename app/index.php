@@ -1,16 +1,15 @@
 <?php
-include_once 'formhandler.php';
-spl_autoload_register(function ($className) {
-    require_once 'classes/' . $className . '.php';
-});
-$db = new Database();
-$gm = new Gamemanager($db);
-$games = $gm ->fetch_all_games();
+    include_once 'formhandler.php';
+    spl_autoload_register(function ($className) {
+        require_once 'classes/' . $className . '.php';
+    });
+    $db = new Database();
+    $gm = new Gamemanager($db);
+    $games = $gm ->fetch_all_games();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

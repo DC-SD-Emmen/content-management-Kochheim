@@ -11,6 +11,7 @@
     //! test
     $db = new Database();
     $gm = new Gamemanager($db);
+    $ugm = new UserGamemanager($db->getConnection());
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" ) {
         if (isset($_POST['add_to_wishlist'])) {
@@ -62,6 +63,16 @@
                 }
                 $gm->insertdata($title, $genre, $platform, $releaseyear, $rating, $description, $afbeelding);
             } 
+        }
+
+        else if (isset($_POST['remove'])) {
+            $game_id = ($_POST['game_id']);
+            $user_id = ($_POST['user_id']);
+            $ugm->RemoveFromWishlist($game_id, $user_id);
+            echo "Game removed from wishlist";
+            
+            $ugm->RemoveFromWishlist($game_id, $user_id);
+            echo "Game removed from wishlist";
         }
     }
 ?>

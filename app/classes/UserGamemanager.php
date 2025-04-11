@@ -66,8 +66,7 @@
             }
         }
 
-        function RemoveWishlist($game_id, $user_id) {
-            echo "game id: " . $game_id;
+        public function RemoveFromWishlist($game_id, $user_id) {
             try {
                 $stmt = $this->conn->prepare("DELETE FROM user_games WHERE game_id = :game_id AND user_id = :user_id");
                 $stmt->bindParam(':game_id', $game_id);
