@@ -4,14 +4,17 @@
         require_once 'classes/' . $className . '.php';
     });
 
-    session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
 
     if (!isset($_SESSION['user'])) {
         header('Location:Loginpage.php');
         exit();
     }
     $user_id = $_SESSION['userId'];
-
+                        //! &&
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove'])) {
         $db = new Database();
         $manager = new UserGamemanager($db->getConnection());
@@ -50,7 +53,7 @@
 </head>
 <body>
 4
-    <form action="formhandler.php" method="post">
+    <form action="Formhandler.php" method="post">
         <input type="hidden" name="game_id" value="<?php echo $id;?>">
         <input type="hidden" name="user_id" value="<?php echo $user_id;?>">
         <input type="submit" name="remove" value="Delete from wishlist">

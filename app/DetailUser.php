@@ -30,7 +30,7 @@
         }
     ?>
 
-    <form action="formhandler.php" method="post">
+    <form action="Libraryuser.php" method="post">
         <input type="hidden" name="game_id" value="<?php echo $id; ?>">
         <input type="submit" name="add_to_wishlist" value="Add to wishlist">
     </form>

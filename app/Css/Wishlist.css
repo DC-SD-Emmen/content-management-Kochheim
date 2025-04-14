@@ -1,4 +1,58 @@
 body {
-    background-color: #f0f0f0;
+    background-color: #3b3a4a;
     font-family: Arial, sans-serif;
+    margin-top: -20px;
+    margin: 0px;
+}
+
+.img {
+    width: 300px;
+    height: 500px;
+}
+
+#terug {
+    margin-top: 0;
+    padding: 10px;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 2px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.gameswishlist {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns of equal width */
+    gap: 20px;
+}
+.games {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: 4;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.containerstart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    background: #292933;
+    color: white;
+    padding: 30px;
+}
+
+#terugbutton {
+    font-style: italic;
+    text-decoration: none;
+    color: white;
+    margin: auto;
+    margin-top: 20px;
+    text-align: center;
+    background: #292933;
+    color: white;
+    width: 300px;
 }

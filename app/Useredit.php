@@ -59,11 +59,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Css/Loginpage.css">
     <title>Edit User</title>
 </head>
 <body>
-    <h1>Edit Your Account</h1>
-    <form method="POST">
+
+    <h1 id="edittop">Edit Your Account</h1>
+    <form method="POST" class="newuser">
         <label for="newusername">New Username:</label>
         <input type="text" id="newusername" name="username" required>
         <br><br>
@@ -75,10 +77,12 @@
         <br><br>
         <button type="submit">Update</button>
     </form>
-    <h2>Delete Your Account</h2>
+    <h2 id="edittitle">Delete Your Account</h2>
     <form method="POST">
         <input type="hidden" name="action" value="delete">
-        <button type="submit" name="delete">Delete Account</button>
+        <button class="fancybutton" type="submit" name="delete">Delete Account</button>
     </form>
+
+    <a class="goback2" href="Libraryuser.php"> Go back </a>
 </body>
 </html>

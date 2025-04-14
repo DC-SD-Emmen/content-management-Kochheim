@@ -5,7 +5,10 @@
         require_once 'classes/' . $className . '.php';
     });
 
-    session_start();
+    //! Start the session if not already started
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
     if (!isset($_SESSION['user'])) {
         header('Location:Loginpage.php');
@@ -15,7 +18,7 @@
     
     $user_id = $_SESSION['userId'];
 
-    echo "user id: " . $user_id;
+    //! echo "user id: " . $user_id;
 
     $db = new Database();   
     $ugm = new UserGamemanager($db->getConnection());
@@ -30,18 +33,19 @@
     <link rel="stylesheet" type="text/css" href="Css/Wishlist.css">
 </head>
 <body>
-    <p> Moaiii <?php echo $_SESSION['user']; ?> Dit zijn jou opgeslagen games. </p>
-   
+    <div class= "containerstart">
+    <p> Moaiii <?php echo $_SESSION['user']; ?> Dit zijn jou opgeslagen games. </p> 
+    <a id="terug" href="Libraryuser.php">Terug</a>
+    </div>
         <div class="gameswishlist">
-
             <?php
-
                 foreach($games as $game) {
+                    echo "<div class='games'>";
                     echo "<h1>" . $game->get_title() . "</h1>";
                     echo "<a href='Wishgame.php?id=" . $game->getID() . "'>";
-                        echo "<img src='" . $game->get_image(). "' class='GameImage'>";
-                        echo "<span class='gameTitle'>Game ID: " . $game->getID() . "</span> <br>";
+                        echo "<img class='img'src='" . $game->get_image(). "' class='GameImage'>";
                     echo "</a>";
+                    echo "</div>";
                 }
 
             ?>
